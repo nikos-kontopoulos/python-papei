@@ -1,3 +1,13 @@
+"""
+1.Γράψτε ένα κώδικα σε Python ο οποίος να παίρνει την διάσταση
+ενός τετραγώνου και θα φτιάχνει μέσα από λίστες τον αντίστοιχο πίνακα.
+Στην συνέχεια θα βρίσκει το πλήθος των θέσεων και θα γεμίζει
+στην τύχη τις μισές με μονάδες (στρογγυλοποίηση προς τα πάνω).
+Σκοπός είναι να μετρήσετε πόσες τετράδες από μονάδες υπάρχουν
+οριζόντια, κάθετα, και διαγώνια. Το πρόγραμμα επαναλαμβάνεται
+100 φορές (για την ίδια διάσταση) και επιστρέφει τον μέσο όρο των τετράδων.
+"""
+
 import random
 
 #******************************
@@ -19,19 +29,27 @@ def count_tetrades():
         y=sum(M[i])
         if y==4:
             x+=1
-    print(times,x)
+##    print(times,x)
     return x
 #******************************
 
 tot_tetrades=0 
 
-stiles = int(input("δώσε πλάτος τετραγώνου (>=4) : "))
-grames = int(input("δώσε ύψος τετραγώνου   (>=4) : "))
+stiles = int(input("δώσε διάσταση τετραγώνου (>=4) : "))
+grames = stiles
+# grames = int(input("δώσε ύψος τετραγώνου   (>=4) : "))
 
 for times in range(100):
 
     M = [] # Master table
     L = [] # τετράγωνο
+
+    theseis = (grames * stiles)
+    if theseis % 2 == 0:
+        mises_theseis = theseis // 2
+    else:
+        mises_theseis = (theseis // 2) + 1
+
     
     for i in range(grames):
         L1 = []
@@ -39,11 +57,11 @@ for times in range(100):
             L1.append(0)
         L.append(L1)
 
-    theseis = (grames * stiles)
+        
 
 
     i=0
-    while i <  theseis//2:
+    while i <  mises_theseis:
         x = random.randint(0,theseis-1)
         row = x // stiles
         col = x % stiles
@@ -221,5 +239,5 @@ for times in range(100):
 
     tot_tetrades += count_tetrades()
 
-print( tot_tetrades )   
-print( round(tot_tetrades/100,2) )   
+print( 'σύνολο τετράδων : ', tot_tetrades )   
+print( ' M.O.  τετράδων : ', round(tot_tetrades/100,2) )   
